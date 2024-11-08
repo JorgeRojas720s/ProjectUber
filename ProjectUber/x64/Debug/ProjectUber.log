@@ -1,2 +1,14 @@
-﻿  main .cpp
+﻿  Graph.cpp
+C:\Users\jorge\OneDrive\Documentos\EstructurasDeDatos\ProjectUber\Graph.cpp(68,76): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\jorge\OneDrive\Documentos\EstructurasDeDatos\ProjectUber\Graph.cpp(68,76): warning C4244:         with
+C:\Users\jorge\OneDrive\Documentos\EstructurasDeDatos\ProjectUber\Graph.cpp(68,76): warning C4244:         [
+C:\Users\jorge\OneDrive\Documentos\EstructurasDeDatos\ProjectUber\Graph.cpp(68,76): warning C4244:             T=float
+C:\Users\jorge\OneDrive\Documentos\EstructurasDeDatos\ProjectUber\Graph.cpp(68,76): warning C4244:         ]
+C:\Users\jorge\OneDrive\Documentos\EstructurasDeDatos\ProjectUber\Graph.cpp(68,55): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\jorge\OneDrive\Documentos\EstructurasDeDatos\ProjectUber\Graph.cpp(68,55): warning C4244:         with
+C:\Users\jorge\OneDrive\Documentos\EstructurasDeDatos\ProjectUber\Graph.cpp(68,55): warning C4244:         [
+C:\Users\jorge\OneDrive\Documentos\EstructurasDeDatos\ProjectUber\Graph.cpp(68,55): warning C4244:             T=float
+C:\Users\jorge\OneDrive\Documentos\EstructurasDeDatos\ProjectUber\Graph.cpp(68,55): warning C4244:         ]
+  main .cpp
+  Generando código...
   ProjectUber.vcxproj -> C:\Users\jorge\OneDrive\Documentos\EstructurasDeDatos\ProjectUber\x64\Debug\ProjectUber.exe
