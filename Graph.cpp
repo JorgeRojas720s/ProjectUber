@@ -60,6 +60,55 @@ void Graph::printGraph()
     } 
 }
 
+vector<vector<int>> Graph::floydWarshall(vector<vector<int>>& next) {
+    // Obtener el número de nodos
+    int n = nodes.size();
+
+    // Crear la matriz de distancias
+    vector<vector<int>> dist(numberVertices, vector<int>(numberVertices, INT_MAX));
+
+    // Inicializar las distancias y la matriz `next`
+    for (int i = 0; i < numberVertices; ++i) {
+        dist[i][i] = 0; // La distancia de un nodo a sí mismo es 0
+        next[i][i] = i; // El siguiente nodo en el camino a sí mismo es el propio nodo
+        for (Edge* edge : adjList[i]) {
+            dist[i][edge->getTargetNode()] = edge->getPrice();
+            next[i][edge->getTargetNode()] = edge->getTargetNode(); // El siguiente nodo es el destino de la arista
+        }
+    }
+
+    // Algoritmo de Floyd-Warshall
+    for (int k = 0; k < numberVertices; ++k) {
+        for (int i = 0; i < numberVertices; ++i) {
+            for (int j = 0; j < numberVertices; ++j) {
+                if (dist[i][k] != INT_MAX && dist[k][j] != INT_MAX) {
+                    int newDist = dist[i][k] + dist[k][j];
+                    if (newDist < dist[i][j]) {
+                        dist[i][j] = newDist;
+                        next[i][j] = next[i][k]; // Actualiza el siguiente nodo
+                    }
+                }
+            }
+        }
+    }
+
+    return dist;
+}
+
+vector<int> Graph::getPath(int start, int end, const vector<vector<int>>& next) {
+    vector<int> path;
+    if (next[start][end] == -1) return path;  // No hay camino
+
+    int currentNode = start;
+    while (currentNode != end) {
+        path.push_back(currentNode);
+        currentNode = next[currentNode][end];
+        if (currentNode == -1) break;  // Si no hay más caminos, se rompe
+    }
+    path.push_back(end);
+    return path;
+}
+
 void Graph::drawPath(RenderWindow& window, const vector<Node*>& nodes)
 {
     VertexArray lines(LinesStrip, this->numberVertices);
@@ -70,5 +119,14 @@ void Graph::drawPath(RenderWindow& window, const vector<Node*>& nodes)
     }
 
     window.draw(lines);
+}
+
+Node* Graph::getNodeById(int id) {
+    for (Node* node : nodes) {
+        if (node->getId() == id) {
+            return node;  // Devuelve el nodo si se encuentra con el id
+        }
+    }
+    return nullptr;  // Si no se encuentra el nodo, devuelve nullptr
 }
 

@@ -26,4 +26,8 @@ public:
 	void addDirectedEdge(int startNode, int endNode, int price, int time);
 	void printGraph();
 	void drawPath(RenderWindow& window, const vector<Node*>& nodes);
+
+	vector<vector<int>> floydWarshall(vector<vector<int>>& next);
+	vector<int> getPath(int start, int end, const vector<vector<int>>& next);
+	Node* getNodeById(int id);
 };
