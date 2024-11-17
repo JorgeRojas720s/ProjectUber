@@ -40,4 +40,12 @@ void RadioButton::deselect() {
     selected = false;
 }
 
+bool RadioButton::getSelected(){
+    return this->selected;
+}
+
+void RadioButton::setSelected(bool selected){
+    this->selected = selected;
+}
+
 

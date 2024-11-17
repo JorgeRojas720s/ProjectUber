@@ -199,6 +199,7 @@ void addEdges(Graph& g) {
 	{50, 49, 30, 18},
 	{50, 40, 20, 12},
 	{40, 41, 15, 9},
+	{90, 89, 12, 9},
 	{71, 70, 18, 11},
 	{50, 51, 22, 13},
 	{40, 39, 27, 16},
@@ -295,34 +296,8 @@ int main() {
 	addEdges(graph);
 	addDirectedEdges(graph);
 
-
-	//vector<vector<int>> next(100, vector<int>(100, -1));
-	//vector<vector<int>> distances = graph.floydWarshall(next);
-	////int dato1, dato2;
-	////cout << "Ingrese:";
-	////cin >> dato1;
-	////cin >> dato2;
-
-	//vector<int> path = graph.getPath(27, 97, next);
-
-	//vector<Node*> nodePath;  
-
-	//for (int nodeId : path) { 
-	//	Node* node = graph.getNodeById(nodeId); 
-	//	if (node != nullptr) { 
-	//		nodePath.push_back(node);
-	//	}
-	//	else {
-	//		std::cout << "Nodo con id " << nodeId << " no encontrado." << std::endl;
-	//	}
-	//}
-	//std::cout << std::endl;
-
-	/*loadWindow(graph, window, nodePath);*/
-
 	Map* map = new Map();
 	map->loadWindow(graph, window);
-	//graph.drawPath(window, nodePath);
 
 	return 0;
 }

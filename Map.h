@@ -37,6 +37,18 @@ public:
 	void eventsHandler(RenderWindow&);
 	void showMessage(RenderWindow&, const string&, Font&);
 	void showWindow(Graph&, RenderWindow&);
+	void resetVariables(bool&, string&);
+	bool isAlreadyUp(Vector2f&, Node*&);
+	bool isAlreadyDown(Vector2f&, Node*&);
+	bool isAlreadyRight(Vector2f&, Node*&);
+	bool isAlreadyLeft(Vector2f&, Node*&);
+	void resetCarPosition(Sprite&, bool&, Node*&);
+	void drawPathFromNodes(Node*& , Node*& , RenderWindow& );
+	
+	void setChooseAlgorithnm(string& , string& , Graph& );
+	void redrawNode(Graph&, RenderWindow&);
+	
+	bool applyDjkstra(Graph& graph);
 	void moveCar(vector<Node*>& , Sprite&);
 	bool applyFloyd(Graph& graph);
 	void rotateCar(Vector2f&, Vector2f&, Sprite&);

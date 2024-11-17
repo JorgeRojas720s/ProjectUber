@@ -18,5 +18,7 @@ public:
     bool isClicked(Vector2f mousePos);
     void select();
     void deselect();
+    bool getSelected();
+    void setSelected(bool);
 };
 

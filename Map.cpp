@@ -6,7 +6,7 @@ Map::Map() {
 	this->animatePoint = false;
 	this->currentNodeIndex = 0;
 	this->interpolation = 0.0;
-	this->speed = 0.0001;
+	this->speed = 0.001;
 	//this->speed = 0.002;
 
 }
@@ -33,7 +33,7 @@ void Map::loadWindow(Graph& graph, RenderWindow& window)
 void Map::loadMap()
 {
 	if (this->mapTexture.loadFromFile("PZ.jpg")) {
-		std::cerr << "No se pudo cargar la imagen del mapa\n";
+		std::cerr << "Bienvenido al Sistema" << endl;
 		return;
 	}
 }
@@ -73,68 +73,127 @@ void Map::eventsHandler(RenderWindow& window)
 	}
 }
 
-
-
-
-void Map::showWindow(Graph& graph, RenderWindow& window)
-{
+void Map::showWindow(Graph& graph, RenderWindow& window){
 	Sprite movingCar(this->carTexture);
 	Sprite mapSprite(this->mapTexture);
 	this->selectedAlgorithm = "Sin algoritmo";
-	bool aux = true;
 
+	RadioButton floyd = this->radioButtons.at(2);
+	RadioButton djkstra = this->radioButtons.at(1);
+	string lastAlgorithm = "";
+	Node* firstNode = nullptr;
+	Node* lastNode = nullptr;
+	bool firstRenderOfTheCar = true;
 	while (window.isOpen()) {
 		eventsHandler(window);
-
 		window.clear();
-
 		window.draw(mapSprite);
-
-		//intenten ver porque no pinta el culo texto
-		if (!drawPathEnabled) {
-			for (Node* node : graph.getNodes()) {
-				window.draw(node->getShape());
-				window.draw(node->getText());
-			}
-		}
-
+		redrawNode(graph, window);
 		graph.drawRadioButtons(window, radioButtons, selectedAlgorithm);
 
 		if (drawPathEnabled) {
-			if (aux == true) {
-				//if floyd esta marcado en radio button ejecutar este, hacer elif para dijkstra
-				aux = applyFloyd(graph);
-
-			}
-
+			setChooseAlgorithnm(selectedAlgorithm, lastAlgorithm, graph);
 			moveCar(this->nodePath, movingCar);
-			//! Ver si dejo esto
-			Node* firstNode = this->nodePath.front();
-			Node* lastNode = this->nodePath.back();
-			window.draw(firstNode->getShape());
-			window.draw(lastNode->getShape());
-			//hasta aqui
+			drawPathFromNodes(firstNode, lastNode, window);
+			resetCarPosition(movingCar, firstRenderOfTheCar, firstNode);
 			graph.drawPath(window, this->nodePath);
 		}
 
 		if (animatePoint) {
 			window.draw(movingCar);
+			Vector2f carPosition = movingCar.getPosition();
+			if (isAlreadyUp(carPosition, lastNode) ||
+				isAlreadyDown(carPosition, lastNode) ||
+				isAlreadyRight(carPosition, lastNode) ||
+				isAlreadyLeft(carPosition, lastNode)
+				) {
+					resetVariables(firstRenderOfTheCar, lastAlgorithm);
+			}
 		}
-
 		window.display();
+		
 	}
 }
+
+void Map::resetVariables(bool& firstRenderOfTheCar, string& lastAlgorithm) {
+	animatePoint = false;
+	drawPathEnabled = false;
+	selectedAlgorithm = lastAlgorithm;
+	this->currentNodeIndex = 0;
+	this->interpolation = 0.0f;
+	firstRenderOfTheCar = true;
+}
+
+bool Map::isAlreadyUp(Vector2f& carPosition, Node*& lastNode) {
+	return (((int)carPosition.x + 8) == lastNode->getPosX() && ((int)carPosition.y - 8) == lastNode->getPosY());
+}
+
+bool Map::isAlreadyDown(Vector2f& carPosition, Node*& lastNode) {
+	return (((int)carPosition.x - 5) == lastNode->getPosX() && ((int)carPosition.y + 8) == lastNode->getPosY());
+}
+
+bool Map::isAlreadyRight(Vector2f& carPosition, Node*& lastNode) {
+	return (((int)carPosition.x + 11) == lastNode->getPosX() && ((int)carPosition.y + 9) == lastNode->getPosY());
+}
+
+bool Map::isAlreadyLeft(Vector2f& carPosition, Node*& lastNode) {
+	return (((int)carPosition.x - 10) == lastNode->getPosX() && ((int)carPosition.y - 8) == lastNode->getPosY());
+}
+
+void Map::resetCarPosition(Sprite& movingCar, bool& firstRenderOfTheCar, Node*& firstNode) {
+	if (firstRenderOfTheCar) {
+		Vector2f newPosition;
+		newPosition.x = firstNode->getPosX();
+		newPosition.y = firstNode->getPosY();
+		movingCar.setPosition(newPosition);
+		firstRenderOfTheCar = false;
+	}
+}
+
+void Map::drawPathFromNodes(Node*& firstNode, Node*& lastNode, RenderWindow& window) {
+	firstNode = this->nodePath.front();
+	lastNode = this->nodePath.back();
+	window.draw(firstNode->getShape());
+	window.draw(lastNode->getShape());
+}
+
+void Map::setChooseAlgorithnm(string& selectedAlgorithm, string& lastAlgorithm, Graph& graph) {
+	if (selectedAlgorithm == "Floyd") {
+		//if floyd esta marcado en radio button ejecutar este, hacer elif para dijkstra
+		lastAlgorithm = selectedAlgorithm;
+		selectedAlgorithm = applyFloyd(graph);
+	}
+	else if (selectedAlgorithm == "Djkstra") {
+		lastAlgorithm = selectedAlgorithm;
+		selectedAlgorithm = applyDjkstra(graph);
+	}
+}
+
+void Map::redrawNode(Graph &graph, RenderWindow& window) {
+	if (!drawPathEnabled) {
+		for (Node* node : graph.getNodes()) {
+			window.draw(node->getShape());
+			window.draw(node->getText());
+		}
+	}
+}
+
+bool Map::applyDjkstra(Graph& graph) {
+	cout << "Apply djkstra" << endl;
+	return false;
+}
+
 
 void Map::moveCar(vector<Node*>& nodePath, Sprite& movingCar)
 {
 
 	if (animatePoint && currentNodeIndex < nodePath.size() - 1) {
 		Vector2f start(
-			nodePath[currentNodeIndex]->getPosX(),
-			nodePath[currentNodeIndex]->getPosY());
+			nodePath.at(currentNodeIndex)->getPosX(),
+			nodePath.at(currentNodeIndex)->getPosY());
 		Vector2f end(
-			nodePath[currentNodeIndex + 1]->getPosX(),
-			nodePath[currentNodeIndex + 1]->getPosY());
+			nodePath.at(currentNodeIndex+1)->getPosX(),
+			nodePath.at(currentNodeIndex+1)->getPosY());
 
 		rotateCar(start, end, movingCar);
 
@@ -147,26 +206,32 @@ void Map::moveCar(vector<Node*>& nodePath, Sprite& movingCar)
 	}
 }
 
-bool Map::applyFloyd(Graph& graph)
-{
+bool Map::applyFloyd(Graph& graph){
 	vector<vector<int>> next(100, vector<int>(100, -1));
 	vector<vector<int>> distances = graph.floydWarshall(next);
-	int dato1, dato2;
-	cout << "Ingrese:";
-	cin >> dato1;
-	cin >> dato2;
+	int origin = 0, destination = 0;
+	cout << "Origen: ";
+	cin >> origin;
+	cout << "Destino: ";
+	cin >> destination;
 
-	vector<int> path = graph.getPath(dato1, dato2, next);
-
+	vector<int> path = graph.getPath(origin, destination, next);
+	int totalMoney = 0;
+	int totalTime = 0;
+	this->nodePath.clear();
+	//agregar el total de money
 	for (int nodeId : path) {
 		Node* node = graph.getNodeById(nodeId);
 		if (node != nullptr) {
 			this->nodePath.push_back(node);
+			//total = total + node
 		}
 		else {
 			std::cout << "Nodo con id " << nodeId << " no encontrado." << std::endl;
 		}
 	}
+	std::cout << "Total del viaje: " << totalMoney << endl;
+	std::cout << "Total de tiempo del viaje: " << totalTime << endl;
 	std::cout << std::endl;
 	return false;
 }
