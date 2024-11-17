@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Graph.h"
 #include "Node.h"
+#include "Map.h"
 #include <vector>
 
 using namespace std;
@@ -284,127 +285,178 @@ void addDirectedEdges(Graph& g) {
 	}
 }
 
-class RadioButton {
-public:
-	CircleShape outerCircle;
-	CircleShape innerCircle;
-	Text label;
-	bool selected;
+//class RadioButton {
+//public:
+//	CircleShape outerCircle;
+//	CircleShape innerCircle;
+//	Text label;
+//	bool selected;
+//
+//	RadioButton(float x, float y, const string& labelText, Font& font) {
+//		outerCircle.setRadius(10);
+//		outerCircle.setFillColor(Color::White);
+//		outerCircle.setOutlineColor(Color::Black);
+//		outerCircle.setOutlineThickness(2);
+//		outerCircle.setPosition(x, y);
+//
+//		innerCircle.setRadius(5);
+//		innerCircle.setFillColor(Color::Black);
+//		innerCircle.setPosition(x + 5, y + 5); // centered within outer circle
+//		selected = false;
+//
+//		label.setFont(font);
+//		label.setString(labelText);
+//		label.setCharacterSize(16);
+//		label.setFillColor(Color::Black);
+//		label.setPosition(x + 25, y - 3); // position label to the right of the button
+//	}
+//
+//	void draw(RenderWindow& window) {
+//		window.draw(outerCircle);
+//		if (selected) {
+//			window.draw(innerCircle);
+//		}
+//		window.draw(label);
+//	}
+//
+//	bool isClicked(Vector2f mousePos) {
+//		return outerCircle.getGlobalBounds().contains(mousePos);
+//	}
+//
+//	void select() { selected = true; }
+//	void deselect() { selected = false; }
+//};
+//
+//void drawRadioButtons(RenderWindow& window, vector<RadioButton>& radioButtons, string& selectedAlgorithm) {
+//	static bool wasMousePressed = false;
+//
+//	Vector2f mousePos = (Vector2f)Mouse::getPosition(window);
+//	bool printRadioBtn = false;
+//
+//	if (Mouse::isButtonPressed(Mouse::Left) && !wasMousePressed) {
+//		for (auto& button : radioButtons) {
+//			if (button.isClicked(mousePos)) {
+//				for (auto& btn : radioButtons) btn.deselect();
+//				button.select();
+//				selectedAlgorithm = button.label.getString();
+//				printRadioBtn = true;
+//				break;
+//			}
+//		}
+//	}
+//
+//	if (printRadioBtn) {
+//		cout << selectedAlgorithm << endl;
+//	}
+//
+//	for (auto& button : radioButtons) {
+//		button.draw(window);
+//	}
+//
+//	wasMousePressed = Mouse::isButtonPressed(Mouse::Left);
+//}
+//
+//void loadWindow(Graph& g, sf::RenderWindow& window, const std::vector<Node*>& nodePath) {
+//	Texture mapTexture;
+//	if (!mapTexture.loadFromFile("PZ.jpg")) {
+//		std::cerr << "No se pudo cargar la imagen del mapa\n";
+//		return;
+//	}
+//	Sprite mapSprite(mapTexture);
+//
+//	string selectedAlgorithm = "Sin algoritmo";
+//
+//	Font font;
+//	if (!font.loadFromFile("UberMoveTextRegular.otf")) {
+//		std::cerr << "Error loading font\n";
+//		return;
+//	}
+//
+//	std::vector<RadioButton> radioButtons;
+//	radioButtons.emplace_back(20, 700, "Sin algoritmo", font);
+//	radioButtons.emplace_back(20, 730, "Dijkstra", font);
+//	radioButtons.emplace_back(20, 760, "Floyd", font);
+//
+//	// Variables para controlar el dibujo del camino y el movimiento del punto
+//	bool drawPathEnabled = false;
+//	bool animatePoint = false;
+//	int currentNodeIndex = 0;
+//	float interpolation = 0.0;
+//	float speed = 0.0001; // Velocidad del movimiento
+//	// Cargar la imagen del sprite
+//	sf::Texture spriteTexture;
+//	if (!spriteTexture.loadFromFile("carroPequeño.png")) {
+//		std::cerr << "No se pudo cargar la imagen del sprite\n";
+//		return;
+//	}
+//	sf::Sprite movingSprite(spriteTexture);
+//
+//
+//	while (window.isOpen()) {
+//		Event event;
+//		while (window.pollEvent(event)) {
+//			if (event.type == Event::Closed) {
+//				window.close();
+//			}
+//
+//			// Activar el dibujo del camino al presionar Enter
+//			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
+//				drawPathEnabled = true;
+//				animatePoint = true;
+//			}
+//		}
+//
+//		// Actualizar la posición del punto en el camino
+//		if (animatePoint && currentNodeIndex < nodePath.size() - 1) {
+//			Vector2f start(
+//				nodePath[currentNodeIndex]->getPosX(),
+//				nodePath[currentNodeIndex]->getPosY());
+//			Vector2f end(
+//				nodePath[currentNodeIndex + 1]->getPosX(),
+//				nodePath[currentNodeIndex + 1]->getPosY());
+//
+//			// Interpolar entre el nodo actual y el siguiente
+//			movingSprite.setPosition(
+//				start.x + interpolation * (end.x - start.x),
+//				start.y + interpolation * (end.y - start.y));
+//
+//			// Incrementar interpolación
+//			interpolation += speed;
+//
+//			// Pasar al siguiente nodo si la interpolación supera 1.0
+//			if (interpolation >= 1.0) {
+//				interpolation = 0.0;
+//				currentNodeIndex++;
+//			}
+//		}
+//
+//		window.clear();
+//
+//		// Dibuja el mapa
+//		window.draw(mapSprite);
+//
+//		// Dibuja los nodos
+//		for (Node* node : g.getNodes()) {
+//			window.draw(node->getShape());
+//		}
+//
+//		// Dibuja las opciones de radio
+//		drawRadioButtons(window, radioButtons, selectedAlgorithm);
+//
+//		// Dibuja el camino si está habilitado
+//		if (drawPathEnabled) {
+//			g.drawPath(window, nodePath);
+//		}
+//
+//		// Dibuja el punto en movimiento
+//		if (animatePoint) {
+//			window.draw(movingSprite);
+//		}
+//
+//		window.display();
+//	}
+//}
 
-	RadioButton(float x, float y, const string& labelText, Font& font) {
-		outerCircle.setRadius(10);
-		outerCircle.setFillColor(Color::White);
-		outerCircle.setOutlineColor(Color::Black);
-		outerCircle.setOutlineThickness(2);
-		outerCircle.setPosition(x, y);
-
-		innerCircle.setRadius(5);
-		innerCircle.setFillColor(Color::Black);
-		innerCircle.setPosition(x + 5, y + 5); // centered within outer circle
-		selected = false;
-
-		label.setFont(font);
-		label.setString(labelText);
-		label.setCharacterSize(16);
-		label.setFillColor(Color::Black);
-		label.setPosition(x + 25, y - 3); // position label to the right of the button
-	}
-
-	void draw(RenderWindow& window) {
-		window.draw(outerCircle);
-		if (selected) {
-			window.draw(innerCircle);
-		}
-		window.draw(label);
-	}
-
-	bool isClicked(Vector2f mousePos) {
-		return outerCircle.getGlobalBounds().contains(mousePos);
-	}
-
-	void select() { selected = true; }
-	void deselect() { selected = false; }
-};
-
-void drawRadioButtons(RenderWindow& window, vector<RadioButton>& radioButtons, string& selectedAlgorithm) {
-	static bool wasMousePressed = false;
-
-	Vector2f mousePos = (Vector2f)Mouse::getPosition(window);
-	bool printRadioBtn = false;
-
-	if (Mouse::isButtonPressed(Mouse::Left) && !wasMousePressed) {
-		for (auto& button : radioButtons) {
-			if (button.isClicked(mousePos)) {
-				for (auto& btn : radioButtons) btn.deselect();
-				button.select();
-				selectedAlgorithm = button.label.getString();
-				printRadioBtn = true;
-				break;
-			}
-		}
-	}
-
-	if (printRadioBtn) {
-		cout << selectedAlgorithm << endl;
-	}
-
-	for (auto& button : radioButtons) {
-		button.draw(window);
-	}
-
-	wasMousePressed = Mouse::isButtonPressed(Mouse::Left);
-}
-
-
-void loadWindow(Graph& g, RenderWindow& window) {
-
-	
-
-	Texture mapTexture;
-	if (!mapTexture.loadFromFile("PZ.jpg")) {
-		cerr << "No se pudo cargar la imagen del mapa\n";
-		return;
-	}
-	Sprite mapSprite(mapTexture);
-
-	string selectedAlgorithm = "Sin algoritmo";
-
-	Font font;
-	if (!font.loadFromFile("UberMoveTextRegular.otf")) {
-		cerr << "Error loading font\n";
-		return;
-	}
-
-    vector<RadioButton> radioButtons;
-    radioButtons.emplace_back(20, 700, "Sin algoritmo", font);
-    radioButtons.emplace_back(20, 730, "Dijkstra", font);
-    radioButtons.emplace_back(20, 760, "Floyd", font);
-
-	while (window.isOpen()) {
-		sf::Event event;
-		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
-		window.clear();
-
-		window.draw(mapSprite);
-
-		for (Node* node : g.getNodes()) {
-			window.draw(node->getShape());
-			//window.draw(node->getText());
-		}
-
-		drawRadioButtons(window, radioButtons, selectedAlgorithm);
-
-		/*	g.drawPath(window, g.getNodes());*/
-
-		window.display();
-	}
-
-
-}
 
 int main() {
 	const int NUMBER_NODES = 100;
@@ -419,14 +471,14 @@ int main() {
 	vector<vector<int>> next(100, vector<int>(100, -1));
 	vector<vector<int>> distances = graph.floydWarshall(next);
 
-	vector<int> path = graph.getPath(28, 98, next);
+	vector<int> path = graph.getPath(0, 98, next);
 
-	vector<Node*> nodePath;  // Vector donde se almacenarán los nodos
+	vector<Node*> nodePath;  
 
-	for (int nodeId : path) {  // Recorre cada id de nodo en el camino
-		Node* node = graph.getNodeById(nodeId);  // Obtiene el nodo correspondiente al id
-		if (node != nullptr) {  // Verifica si el nodo fue encontrado
-			nodePath.push_back(node);  // Agrega el nodo al vector
+	for (int nodeId : path) { 
+		Node* node = graph.getNodeById(nodeId); 
+		if (node != nullptr) { 
+			nodePath.push_back(node);
 		}
 		else {
 			std::cout << "Nodo con id " << nodeId << " no encontrado." << std::endl;
@@ -434,8 +486,11 @@ int main() {
 	}
 	std::cout << std::endl;
 
-	loadWindow(graph, window);
-	graph.drawPath(window, nodePath);
+	/*loadWindow(graph, window, nodePath);*/
+
+	Map* map = new Map();
+	map->loadWindow(graph, window, nodePath);
+	//graph.drawPath(window, nodePath);
 
 	return 0;
 }

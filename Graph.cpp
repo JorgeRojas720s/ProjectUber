@@ -111,9 +111,9 @@ vector<int> Graph::getPath(int start, int end, const vector<vector<int>>& next) 
 
 void Graph::drawPath(RenderWindow& window, const vector<Node*>& nodes)
 {
-    VertexArray lines(LinesStrip, this->numberVertices);
+    VertexArray lines(LinesStrip, nodes.size());
 
-    for (int i = 0; i < this->numberVertices; ++i) {
+    for (int i = 0; i < nodes.size(); ++i) {
         lines[i].position = Vector2f(nodes[i]->getPosX(), nodes[i]->getPosY());
         lines[i].color = Color::Red; 
     }

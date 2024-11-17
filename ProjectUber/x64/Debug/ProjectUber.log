@@ -1,13 +1,25 @@
-﻿  Graph.cpp
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(65,11): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,76): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,76): warning C4244:         with
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,76): warning C4244:         [
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,76): warning C4244:             T=float
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,76): warning C4244:         ]
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,55): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,55): warning C4244:         with
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,55): warning C4244:         [
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,55): warning C4244:             T=float
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,55): warning C4244:         ]
-  ProjectUber.vcxproj -> C:\Users\igmml\Source\Repos\ProjectUber\x64\Debug\ProjectUber.exe
+﻿  Map.cpp
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(9,16): warning C4305: '=': truncamiento de 'double' a 'float'
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(84,40): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(84,40): warning C4244:         with
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(84,40): warning C4244:         [
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(84,40): warning C4244:             T=float
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(84,40): warning C4244:         ]
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(83,40): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(83,40): warning C4244:         with
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(83,40): warning C4244:         [
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(83,40): warning C4244:             T=float
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(83,40): warning C4244:         ]
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(87,44): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(87,44): warning C4244:         with
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(87,44): warning C4244:         [
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(87,44): warning C4244:             T=float
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(87,44): warning C4244:         ]
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(86,44): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(86,44): warning C4244:         with
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(86,44): warning C4244:         [
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(86,44): warning C4244:             T=float
+C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(86,44): warning C4244:         ]
+  main .cpp
+  Generando código...
+  ProjectUber.vcxproj -> C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\x64\Debug\ProjectUber.exe

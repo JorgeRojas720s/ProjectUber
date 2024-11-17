@@ -1,0 +1,40 @@
+#pragma once
+#include <SFML/Graphics.hpp>
+#include "RadioButton.h"
+#include "Graph.h"
+#include "Node.h"
+#include <vector>
+
+
+using namespace sf;
+using namespace std;
+
+
+class Map {
+
+private:
+	Texture mapTexture;
+	Texture spriteTexture;
+	string selectedAlgorithm;
+	Font font;
+	//vector<RadioButton> radioButtons;
+	Event event;
+	bool drawPathEnabled;
+	bool animatePoint;
+	int currentNodeIndex;
+	float interpolation;
+	float speed;
+
+public:
+	Map();
+	Map(bool, bool, int, float, float);
+
+	void loadWindow(Graph&, RenderWindow&, vector<Node*>&);
+	void loadMap();
+	//void loadFont();
+	void loadCarSprite();
+	void showWindow(Graph&, RenderWindow&, vector<Node*>&);
+
+
+
+};

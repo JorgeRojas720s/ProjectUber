@@ -7,6 +7,7 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="RadioButton.cpp" />
     <ClCompile Include="Floyd.cpp" />
+    <ClCompile Include="Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Edge.h" />
@@ -14,5 +15,6 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="RadioButton.h" />
     <ClInclude Include="Floyd.h" />
+    <ClInclude Include="Map.h" />
   </ItemGroup>
 </Project>
