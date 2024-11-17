@@ -91,9 +91,11 @@ void Map::showWindow(Graph& graph, RenderWindow& window)
 		window.draw(mapSprite);
 
 		//intenten ver porque no pinta el culo texto
-		for (Node* node : graph.getNodes()) {
-			window.draw(node->getShape());
-			window.draw(node->getText());
+		if (!drawPathEnabled) {
+			for (Node* node : graph.getNodes()) {
+				window.draw(node->getShape());
+				window.draw(node->getText());
+			}
 		}
 
 		graph.drawRadioButtons(window, radioButtons, selectedAlgorithm);

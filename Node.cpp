@@ -2,26 +2,28 @@
 
 Node::Node()
 {
-	if (!this->font.loadFromFile("UberMoveTextRegular.otf")) {
-		std::cerr << "Error loading font\n";
-		return;
-	}
 
 }
 
 Node::Node(int id, int posX, int posY)
 {
+	if (!this->font.loadFromFile("UberMoveTextRegular.otf")) {
+		std::cerr << "Error loading font\n";
+		return;
+	}
+
 	this->id = id;
 	this->posX = posX;
 	this->posY = posY;
 	this->shape.setRadius(2);
 	this->shape.setFillColor(Color::Blue);
 	this->shape.setPosition(posX - this->shape.getRadius(), posY - this->shape.getRadius());
-	this->text.setString(to_string(id));
-	this->text.setCharacterSize(this->shape.getRadius() * 3); 
-	this->text.setFillColor(Color::Blue);
+
 	this->text.setFont(this->font);
-	this->text.setPosition(posX - this->text.getLocalBounds().width / 2, posY - this->text.getLocalBounds().height / 2);
+	this->text.setString(to_string(id));
+	this->text.setCharacterSize(11); 
+	this->text.setFillColor(Color::Red);
+	this->text.setPosition(posX - this->text.getLocalBounds().width / 2, posY - this->shape.getRadius() - 10);
 
 }
 
