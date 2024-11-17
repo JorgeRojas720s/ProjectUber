@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Graph.h"
 #include "Node.h"
+#include "RadioButton.h"
 #include <vector>
 
 using namespace std;
@@ -284,81 +285,7 @@ void addDirectedEdges(Graph& g) {
 	}
 }
 
-class RadioButton {
-public:
-	CircleShape outerCircle;
-	CircleShape innerCircle;
-	Text label;
-	bool selected;
-
-	RadioButton(float x, float y, const string& labelText, Font& font) {
-		outerCircle.setRadius(10);
-		outerCircle.setFillColor(Color::White);
-		outerCircle.setOutlineColor(Color::Black);
-		outerCircle.setOutlineThickness(2);
-		outerCircle.setPosition(x, y);
-
-		innerCircle.setRadius(5);
-		innerCircle.setFillColor(Color::Black);
-		innerCircle.setPosition(x + 5, y + 5); // centered within outer circle
-		selected = false;
-
-		label.setFont(font);
-		label.setString(labelText);
-		label.setCharacterSize(16);
-		label.setFillColor(Color::Black);
-		label.setPosition(x + 25, y - 3); // position label to the right of the button
-	}
-
-	void draw(RenderWindow& window) {
-		window.draw(outerCircle);
-		if (selected) {
-			window.draw(innerCircle);
-		}
-		window.draw(label);
-	}
-
-	bool isClicked(Vector2f mousePos) {
-		return outerCircle.getGlobalBounds().contains(mousePos);
-	}
-
-	void select() { selected = true; }
-	void deselect() { selected = false; }
-};
-
-void drawRadioButtons(RenderWindow& window, vector<RadioButton>& radioButtons, string& selectedAlgorithm) {
-	static bool wasMousePressed = false;
-
-	Vector2f mousePos = (Vector2f)Mouse::getPosition(window);
-	bool printRadioBtn = false;
-
-	if (Mouse::isButtonPressed(Mouse::Left) && !wasMousePressed) {
-		for (auto& button : radioButtons) {
-			if (button.isClicked(mousePos)) {
-				for (auto& btn : radioButtons) btn.deselect();
-				button.select();
-				selectedAlgorithm = button.label.getString();
-				printRadioBtn = true;
-				break;
-			}
-		}
-	}
-
-	if (printRadioBtn) {
-		cout << selectedAlgorithm << endl;
-	}
-
-	for (auto& button : radioButtons) {
-		button.draw(window);
-	}
-
-	wasMousePressed = Mouse::isButtonPressed(Mouse::Left);
-}
-
-
 void loadWindow(Graph& g, RenderWindow& window) {
-
-	
 
 	Texture mapTexture;
 	if (!mapTexture.loadFromFile("PZ.jpg")) {
@@ -375,10 +302,10 @@ void loadWindow(Graph& g, RenderWindow& window) {
 		return;
 	}
 
-    vector<RadioButton> radioButtons;
-    radioButtons.emplace_back(20, 700, "Sin algoritmo", font);
-    radioButtons.emplace_back(20, 730, "Dijkstra", font);
-    radioButtons.emplace_back(20, 760, "Floyd", font);
+	vector<RadioButton> radioButtons;
+	radioButtons.emplace_back(20, 700, "Sin algoritmo", font, true);
+	radioButtons.emplace_back(20, 730, "Dijkstra", font);
+	radioButtons.emplace_back(20, 760, "Floyd", font);
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -396,7 +323,7 @@ void loadWindow(Graph& g, RenderWindow& window) {
 			//window.draw(node->getText());
 		}
 
-		drawRadioButtons(window, radioButtons, selectedAlgorithm);
+		g.drawRadioButtons(window, radioButtons, selectedAlgorithm);
 
 		/*	g.drawPath(window, g.getNodes());*/
 
@@ -407,6 +334,7 @@ void loadWindow(Graph& g, RenderWindow& window) {
 }
 
 int main() {
+
 	const int NUMBER_NODES = 100;
 	RenderWindow window(VideoMode(WIDTH_WINDOW, HEIGHT_WINDOW), "Uber :)");
 	Graph graph(NUMBER_NODES);

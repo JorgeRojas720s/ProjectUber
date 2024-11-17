@@ -1,13 +1,21 @@
 ﻿  Graph.cpp
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(65,11): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,76): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,76): warning C4244:         with
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,76): warning C4244:         [
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,76): warning C4244:             T=float
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,76): warning C4244:         ]
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,55): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,55): warning C4244:         with
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,55): warning C4244:         [
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,55): warning C4244:             T=float
-C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(119,55): warning C4244:         ]
-  ProjectUber.vcxproj -> C:\Users\igmml\Source\Repos\ProjectUber\x64\Debug\ProjectUber.exe
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Graph.cpp(65,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Graph.cpp(117,76): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Graph.cpp(117,76): warning C4244:         with
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Graph.cpp(117,76): warning C4244:         [
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Graph.cpp(117,76): warning C4244:             T=float
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Graph.cpp(117,76): warning C4244:         ]
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Graph.cpp(117,55): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Graph.cpp(117,55): warning C4244:         with
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Graph.cpp(117,55): warning C4244:         [
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Graph.cpp(117,55): warning C4244:             T=float
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Graph.cpp(117,55): warning C4244:         ]
+  RadioButton.cpp
+  main .cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmemory(700,103): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmemory(700,103): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmemory(700,103): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmemory(700,103): warning C4244:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmemory(700,103): warning C4244:         ]
+  Generating Code...
+  ProjectUber.vcxproj -> C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\x64\Debug\ProjectUber.exe

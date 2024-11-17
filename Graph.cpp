@@ -95,6 +95,54 @@ vector<vector<int>> Graph::floydWarshall(vector<vector<int>>& next) {
     return dist;
 }
 
+vector<int> Graph::dijkstra(int start, int end, int metric) {
+    vector<int> distances(numberVertices, INT_MAX);
+    vector<bool> visited(numberVertices, false);
+    vector<int> parent(numberVertices, -1);
+    distances[start] = 0;
+    parent[start] = start;
+
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push({ 0, start });
+
+    while (!pq.empty()) {
+        int current = pq.top().second;
+        int currentDist = pq.top().first;
+        pq.pop();
+
+        if (current == end) break;
+
+        if (visited[current] || currentDist > distances[current]) continue;
+
+        visited[current] = true;
+
+        for (Edge* edge : adjList[current]) {
+            int neighbor = edge->getTargetNode();
+
+            int weight = (metric == 0) ? edge->getPrice() : edge->getTime();
+
+            if (!visited[neighbor] && distances[current] + weight < distances[neighbor]) {
+                distances[neighbor] = distances[current] + weight;
+                parent[neighbor] = current; 
+                pq.push({ distances[neighbor], neighbor });
+            }
+        }
+    }
+
+    vector<int> path;
+    if (distances[end] != INT_MAX) { 
+        int current = end;
+        while (current != start) {
+            path.push_back(current);
+            current = parent[current];
+        }
+        path.push_back(start);
+        reverse(path.begin(), path.end());
+    }
+
+    return path;
+}
+
 vector<int> Graph::getPath(int start, int end, const vector<vector<int>>& next) {
     vector<int> path;
     if (next[start][end] == -1) return path;  // No hay camino
@@ -128,5 +176,34 @@ Node* Graph::getNodeById(int id) {
         }
     }
     return nullptr;  // Si no se encuentra el nodo, devuelve nullptr
+}
+
+void Graph::drawRadioButtons(RenderWindow& window, vector<RadioButton>& radioButtons, string& selectedAlgorithm) {
+    static bool wasMousePressed = false;
+
+    Vector2f mousePos = (Vector2f)Mouse::getPosition(window);
+    bool printRadioBtn = false;
+
+    if (Mouse::isButtonPressed(Mouse::Left) && !wasMousePressed) {
+        for (auto& button : radioButtons) {
+            if (button.isClicked(mousePos)) {
+                for (auto& btn : radioButtons) btn.deselect();
+                button.select();
+                selectedAlgorithm = button.label.getString();
+                printRadioBtn = true;
+                break;
+            }
+        }
+    }
+
+    if (printRadioBtn) {
+        cout << selectedAlgorithm << endl;
+    }
+
+    for (auto& button : radioButtons) {
+        button.draw(window);
+    }
+
+    wasMousePressed = Mouse::isButtonPressed(Mouse::Left);
 }
 

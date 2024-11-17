@@ -2,7 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include "Node.h"
 #include "Edge.h"
+#include "RadioButton.h"
 #include <vector>
+#include <queue>
+#include <limits.h>
 
 using namespace std;
 using namespace sf;
@@ -28,6 +31,9 @@ public:
 	void drawPath(RenderWindow& window, const vector<Node*>& nodes);
 
 	vector<vector<int>> floydWarshall(vector<vector<int>>& next);
+	vector<int> dijkstra(int start, int end, int metric);
+
 	vector<int> getPath(int start, int end, const vector<vector<int>>& next);
 	Node* getNodeById(int id);
+	void drawRadioButtons(RenderWindow& window, vector<RadioButton>& radioButtons, string& selectedAlgorithm);
 };
