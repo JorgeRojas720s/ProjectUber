@@ -299,7 +299,7 @@ int main() {
 	vector<vector<int>> next(100, vector<int>(100, -1));
 	vector<vector<int>> distances = graph.floydWarshall(next);
 
-	vector<int> path = graph.getPath(0, 98, next);
+	vector<int> path = graph.getPath(27, 97, next);
 
 	vector<Node*> nodePath;  
 

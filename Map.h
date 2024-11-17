@@ -14,7 +14,7 @@ class Map {
 
 private:
 	Texture mapTexture;
-	Texture spriteTexture;
+	Texture carTexture;
 	string selectedAlgorithm;
 	Font font;
 	vector<RadioButton> radioButtons;
@@ -33,7 +33,12 @@ public:
 	void loadMap();
 	void loadFont();
 	void loadCarSprite();
+	void eventsHandler(RenderWindow&);
+	void showMessage(RenderWindow&, const string&, Font&);
 	void showWindow(Graph&, RenderWindow&, vector<Node*>&);
+	void moveCar(vector<Node*>&, Sprite&);
+	void rotateCar(Vector2f&, Vector2f&, Sprite&);
+
 
 
 
