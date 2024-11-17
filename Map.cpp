@@ -21,12 +21,12 @@ Map::Map(bool drawPathEnabled, bool animatePoint, int currentNodeIndex, float in
 
 }
 
-void Map::loadWindow(Graph& graph, RenderWindow& window, vector<Node*>& nodePath)
+void Map::loadWindow(Graph& graph, RenderWindow& window)
 {
 	loadMap();
 	loadFont();
 	loadCarSprite();
-	showWindow(graph, window, nodePath);
+	showWindow(graph, window);
 
 }
 
@@ -69,46 +69,50 @@ void Map::eventsHandler(RenderWindow& window)
 			drawPathEnabled = true;
 			animatePoint = true;
 		}
+
 	}
 }
 
 
 
 
-void Map::showWindow(Graph& graph, RenderWindow& window, vector<Node*>& nodePath)
+void Map::showWindow(Graph& graph, RenderWindow& window)
 {
-
 	Sprite movingCar(this->carTexture);
 	Sprite mapSprite(this->mapTexture);
 	this->selectedAlgorithm = "Sin algoritmo";
+	bool aux = true;
 
 	while (window.isOpen()) {
 		eventsHandler(window);
-
-		moveCar(nodePath, movingCar);
 
 		window.clear();
 
 		window.draw(mapSprite);
 
-	/*	for (Node* node : graph.getNodes()) {
+		//intenten ver porque no pinta el culo texto
+		for (Node* node : graph.getNodes()) {
 			window.draw(node->getShape());
-		}*/
-
-
-
+			window.draw(node->getText());
+		}
 
 		graph.drawRadioButtons(window, radioButtons, selectedAlgorithm);
 
 		if (drawPathEnabled) {
+			if (aux == true) {
+				//if floyd esta marcado en radio button ejecutar este, hacer elif para dijkstra
+				aux = applyFloyd(graph);
 
+			}
+
+			moveCar(this->nodePath, movingCar);
 			//! Ver si dejo esto
-			Node* firstNode = nodePath.front();
-			Node* lastNode = nodePath.back();
+			Node* firstNode = this->nodePath.front();
+			Node* lastNode = this->nodePath.back();
 			window.draw(firstNode->getShape());
 			window.draw(lastNode->getShape());
 			//hasta aqui
-			graph.drawPath(window, nodePath);
+			graph.drawPath(window, this->nodePath);
 		}
 
 		if (animatePoint) {
@@ -121,6 +125,7 @@ void Map::showWindow(Graph& graph, RenderWindow& window, vector<Node*>& nodePath
 
 void Map::moveCar(vector<Node*>& nodePath, Sprite& movingCar)
 {
+
 	if (animatePoint && currentNodeIndex < nodePath.size() - 1) {
 		Vector2f start(
 			nodePath[currentNodeIndex]->getPosX(),
@@ -128,7 +133,6 @@ void Map::moveCar(vector<Node*>& nodePath, Sprite& movingCar)
 		Vector2f end(
 			nodePath[currentNodeIndex + 1]->getPosX(),
 			nodePath[currentNodeIndex + 1]->getPosY());
-
 
 		rotateCar(start, end, movingCar);
 
@@ -141,7 +145,49 @@ void Map::moveCar(vector<Node*>& nodePath, Sprite& movingCar)
 	}
 }
 
+bool Map::applyFloyd(Graph& graph)
+{
+	vector<vector<int>> next(100, vector<int>(100, -1));
+	vector<vector<int>> distances = graph.floydWarshall(next);
+	int dato1, dato2;
+	cout << "Ingrese:";
+	cin >> dato1;
+	cin >> dato2;
+
+	vector<int> path = graph.getPath(dato1, dato2, next);
+
+	for (int nodeId : path) {
+		Node* node = graph.getNodeById(nodeId);
+		if (node != nullptr) {
+			this->nodePath.push_back(node);
+		}
+		else {
+			std::cout << "Nodo con id " << nodeId << " no encontrado." << std::endl;
+		}
+	}
+	std::cout << std::endl;
+	return false;
+}
+
 void Map::rotateCar(Vector2f& start, Vector2f& end, Sprite& movingCar)
+{
+	rotateRight(start, end, movingCar);
+	rotateLeft(start, end, movingCar);
+	rotateUp(start, end, movingCar);
+	rotateDown(start, end, movingCar);
+}
+
+void Map::rotateRight(Vector2f& start, Vector2f& end, Sprite& movingCar)
+{
+	if (end.x > start.x && end.y > start.y) { //der
+		movingCar.setRotation(15);
+		movingCar.setPosition(
+			start.x + interpolation * (end.x - start.x) - 10,
+			start.y + interpolation * (end.y - start.y) - 8);
+	}
+}
+
+void Map::rotateLeft(Vector2f& start, Vector2f& end, Sprite& movingCar)
 {
 	if (end.x < start.x && end.y < start.y) { //izq
 		movingCar.setRotation(195);
@@ -150,23 +196,24 @@ void Map::rotateCar(Vector2f& start, Vector2f& end, Sprite& movingCar)
 			start.x + interpolation * (end.x - start.x) + 10,
 			start.y + interpolation * (end.y - start.y) + 8);
 	}
-	else if (end.x > start.x && end.y > start.y) { //der
-		movingCar.setRotation(15);
-		movingCar.setPosition(
-			start.x + interpolation * (end.x - start.x) - 10,
-			start.y + interpolation * (end.y - start.y) - 8);
-	}
-	else if (end.x < start.x && end.y > start.y) { //pabajo
-		movingCar.setRotation(105);
-		movingCar.setPosition(
-			start.x + interpolation * (end.x - start.x) + 5,
-			start.y + interpolation * (end.y - start.y) - 7);
-	}
-	else if (end.x > start.x && end.y < start.y) { //parriba
+}
+
+void Map::rotateUp(Vector2f& start, Vector2f& end, Sprite& movingCar)
+{
+	if (end.x > start.x && end.y < start.y) { //parriba
 		movingCar.setRotation(285);
 		movingCar.setPosition(
 			start.x + interpolation * (end.x - start.x) - 7,
 			start.y + interpolation * (end.y - start.y) + 8);
 	}
+}
 
+void Map::rotateDown(Vector2f& start, Vector2f& end, Sprite& movingCar)
+{
+	if (end.x < start.x && end.y > start.y) { //pabajo
+		movingCar.setRotation(105);
+		movingCar.setPosition(
+			start.x + interpolation * (end.x - start.x) + 5,
+			start.y + interpolation * (end.y - start.y) - 7);
+	}
 }

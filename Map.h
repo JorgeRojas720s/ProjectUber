@@ -18,6 +18,7 @@ private:
 	string selectedAlgorithm;
 	Font font;
 	vector<RadioButton> radioButtons;
+	vector<Node*> nodePath;
 	Event event;
 	bool drawPathEnabled;
 	bool animatePoint;
@@ -29,16 +30,20 @@ public:
 	Map();
 	Map(bool, bool, int, float, float);
 
-	void loadWindow(Graph&, RenderWindow&, vector<Node*>&);
+	void loadWindow(Graph&, RenderWindow&);
 	void loadMap();
 	void loadFont();
 	void loadCarSprite();
 	void eventsHandler(RenderWindow&);
 	void showMessage(RenderWindow&, const string&, Font&);
-	void showWindow(Graph&, RenderWindow&, vector<Node*>&);
-	void moveCar(vector<Node*>&, Sprite&);
+	void showWindow(Graph&, RenderWindow&);
+	void moveCar(vector<Node*>& , Sprite&);
+	bool applyFloyd(Graph& graph);
 	void rotateCar(Vector2f&, Vector2f&, Sprite&);
-
+	void rotateRight(Vector2f&, Vector2f&, Sprite&);
+	void rotateLeft(Vector2f&, Vector2f&, Sprite&);
+	void rotateUp(Vector2f&, Vector2f&, Sprite&);
+	void rotateDown(Vector2f&, Vector2f&, Sprite&);
 
 
 

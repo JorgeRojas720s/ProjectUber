@@ -296,28 +296,32 @@ int main() {
 	addDirectedEdges(graph);
 
 
-	vector<vector<int>> next(100, vector<int>(100, -1));
-	vector<vector<int>> distances = graph.floydWarshall(next);
+	//vector<vector<int>> next(100, vector<int>(100, -1));
+	//vector<vector<int>> distances = graph.floydWarshall(next);
+	////int dato1, dato2;
+	////cout << "Ingrese:";
+	////cin >> dato1;
+	////cin >> dato2;
 
-	vector<int> path = graph.getPath(27, 97, next);
+	//vector<int> path = graph.getPath(27, 97, next);
 
-	vector<Node*> nodePath;  
+	//vector<Node*> nodePath;  
 
-	for (int nodeId : path) { 
-		Node* node = graph.getNodeById(nodeId); 
-		if (node != nullptr) { 
-			nodePath.push_back(node);
-		}
-		else {
-			std::cout << "Nodo con id " << nodeId << " no encontrado." << std::endl;
-		}
-	}
-	std::cout << std::endl;
+	//for (int nodeId : path) { 
+	//	Node* node = graph.getNodeById(nodeId); 
+	//	if (node != nullptr) { 
+	//		nodePath.push_back(node);
+	//	}
+	//	else {
+	//		std::cout << "Nodo con id " << nodeId << " no encontrado." << std::endl;
+	//	}
+	//}
+	//std::cout << std::endl;
 
 	/*loadWindow(graph, window, nodePath);*/
 
 	Map* map = new Map();
-	map->loadWindow(graph, window, nodePath);
+	map->loadWindow(graph, window);
 	//graph.drawPath(window, nodePath);
 
 	return 0;

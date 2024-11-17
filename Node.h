@@ -12,7 +12,8 @@ private:
 	int posX;
 	int posY;
 	CircleShape shape;
-	//Text text;
+	Text text;
+	Font font;
 
 public:
 
@@ -33,6 +34,8 @@ public:
 	void setPosY(int posY);
 
 	CircleShape getShape();
+
+	Text getText();
 
 	void setShape(CircleShape shape);
 
