@@ -1,25 +1,28 @@
 ﻿  Map.cpp
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(9,16): warning C4305: '=': truncamiento de 'double' a 'float'
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(84,40): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(84,40): warning C4244:         with
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(84,40): warning C4244:         [
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(84,40): warning C4244:             T=float
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(84,40): warning C4244:         ]
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(83,40): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(83,40): warning C4244:         with
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(83,40): warning C4244:         [
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(83,40): warning C4244:             T=float
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(83,40): warning C4244:         ]
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(87,44): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(87,44): warning C4244:         with
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(87,44): warning C4244:         [
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(87,44): warning C4244:             T=float
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(87,44): warning C4244:         ]
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(86,44): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(86,44): warning C4244:         with
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(86,44): warning C4244:         [
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(86,44): warning C4244:             T=float
-C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\Map.cpp(86,44): warning C4244:         ]
-  main .cpp
-  Generando código...
-  ProjectUber.vcxproj -> C:\Users\jorge\OneDrive\Documentos\GitHub\ProjectUber\x64\Debug\ProjectUber.exe
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(9,16): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(82,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(82,40): warning C4244:         with
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(82,40): warning C4244:         [
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(82,40): warning C4244:             T=float
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(82,40): warning C4244:         ]
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(81,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(81,40): warning C4244:         with
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(81,40): warning C4244:         [
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(81,40): warning C4244:             T=float
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(81,40): warning C4244:         ]
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(85,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(85,44): warning C4244:         with
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(85,44): warning C4244:         [
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(85,44): warning C4244:             T=float
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(85,44): warning C4244:         ]
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(84,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(84,44): warning C4244:         with
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(84,44): warning C4244:         [
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(84,44): warning C4244:             T=float
+C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\Map.cpp(84,44): warning C4244:         ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmemory(700,103): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmemory(700,103): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmemory(700,103): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmemory(700,103): warning C4244:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\include\xmemory(700,103): warning C4244:         ]
+  ProjectUber.vcxproj -> C:\Users\Fabiux\Documents\VisualStudioProjects\ProjectUber\x64\Debug\ProjectUber.exe

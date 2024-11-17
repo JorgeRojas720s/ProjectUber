@@ -17,7 +17,7 @@ private:
 	Texture spriteTexture;
 	string selectedAlgorithm;
 	Font font;
-	//vector<RadioButton> radioButtons;
+	vector<RadioButton> radioButtons;
 	Event event;
 	bool drawPathEnabled;
 	bool animatePoint;
@@ -31,7 +31,7 @@ public:
 
 	void loadWindow(Graph&, RenderWindow&, vector<Node*>&);
 	void loadMap();
-	//void loadFont();
+	void loadFont();
 	void loadCarSprite();
 	void showWindow(Graph&, RenderWindow&, vector<Node*>&);
 

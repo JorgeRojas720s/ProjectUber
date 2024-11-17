@@ -22,7 +22,7 @@ Map::Map(bool drawPathEnabled, bool animatePoint, int currentNodeIndex, float in
 void Map::loadWindow(Graph& graph, RenderWindow& window, vector<Node*>& nodePath)
 {
 	loadMap();
-	//loadFont();
+	loadFont();
 	loadCarSprite();
 	showWindow(graph, window, nodePath);
 
@@ -36,17 +36,17 @@ void Map::loadMap()
 	}
 }
 
-//void Map::loadFont()
-//{
-//	if (!this->font.loadFromFile("UberMoveTextRegular.otf")) {
-//		std::cerr << "Error loading font\n";
-//		return;
-//	}
-//
-//	this->radioButtons.emplace_back(20, 700, "Sin algoritmo", font);
-//	this->radioButtons.emplace_back(20, 730, "Dijkstra", font);
-//	this->radioButtons.emplace_back(20, 760, "Floyd", font);
-//}
+void Map::loadFont()
+{
+	if (!this->font.loadFromFile("UberMoveTextRegular.otf")) {
+		std::cerr << "Error loading font\n";
+		return;
+	}
+
+	this->radioButtons.emplace_back(20, 700, "Sin algoritmo", font, true);
+	this->radioButtons.emplace_back(20, 730, "Dijkstra", font);
+	this->radioButtons.emplace_back(20, 760, "Floyd", font);
+}
 
 void Map::loadCarSprite()
 {
@@ -104,7 +104,7 @@ void Map::showWindow(Graph& graph, RenderWindow& window, vector<Node*>& nodePath
 			window.draw(node->getShape());
 		}
 
-		//drawRadioButtons(window, radioButtons, selectedAlgorithm);
+		graph.drawRadioButtons(window, radioButtons, selectedAlgorithm);
 
 		if (drawPathEnabled) {
 			graph.drawPath(window, nodePath);
