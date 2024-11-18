@@ -16,4 +16,71 @@ C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(192,55): warning C4244:       
 C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(192,55): warning C4244:         [
 C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(192,55): warning C4244:             T=float
 C:\Users\igmml\source\repos\ProjectUber\Graph.cpp(192,55): warning C4244:         ]
+  Map.cpp
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(9,16): warning C4305: '=': truncamiento de 'double' a 'float'
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(146,37): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(146,37): warning C4244:         with
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(146,37): warning C4244:         [
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(146,37): warning C4244:             T=float
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(146,37): warning C4244:         ]
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(147,37): warning C4244: '=': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(147,37): warning C4244:         with
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(147,37): warning C4244:         [
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(147,37): warning C4244:             T=float
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(147,37): warning C4244:         ]
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(193,42): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(193,42): warning C4244:         with
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(193,42): warning C4244:         [
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(193,42): warning C4244:             T=float
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(193,42): warning C4244:         ]
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(192,42): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(192,42): warning C4244:         with
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(192,42): warning C4244:         [
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(192,42): warning C4244:             T=float
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(192,42): warning C4244:         ]
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(196,44): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(196,44): warning C4244:         with
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(196,44): warning C4244:         [
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(196,44): warning C4244:             T=float
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(196,44): warning C4244:         ]
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(195,44): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(195,44): warning C4244:         with
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(195,44): warning C4244:         [
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(195,44): warning C4244:             T=float
+C:\Users\igmml\source\repos\ProjectUber\Map.cpp(195,44): warning C4244:         ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103): warning C4244: 'argumento': conversión de '_Ty' a 'float'; posible pérdida de datos
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103): warning C4244:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103): warning C4244:         ]
+  (compilando archivo de origen "Map.cpp")
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(700,103):
+      el contexto de creación de instancias de la plantilla (el más antiguo primero) es
+          C:\Users\igmml\source\repos\ProjectUber\Map.cpp(48,21):
+          Vea la referencia a la creación de una instancia de la función plantilla "void std::vector<RadioButton,std::allocator<RadioButton>>::emplace_back<int,int,const char(&)[14],sf::Font&,bool>(int &&,int &&,const char (&)[14],sf::Font &,bool &&)" que se está compilando
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vector(858,24):
+          Vea la referencia a la creación de una instancia de la función plantilla "_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<int,int,const char(&)[14],sf::Font&,bool>(int &&,int &&,const char (&)[14],sf::Font &,bool &&)" que se está compilando
+          with
+          [
+              _Ty=RadioButton
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vector(776,20):
+          Vea la referencia a la creación de una instancia de la función plantilla "_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<int,int,const char(&)[14],sf::Font&,bool>(int &&,int &&,const char (&)[14],sf::Font &,bool &&)" que se está compilando
+          with
+          [
+              _Ty=RadioButton
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vector(794,27):
+          Vea la referencia a la creación de una instancia de la función plantilla "void std::_Default_allocator_traits<_Alloc>::construct<_Ty,int,int,const char(&)[14],sf::Font&,bool>(_Alloc &,_Objty *const ,int &&,int &&,const char (&)[14],sf::Font &,bool &&)" que se está compilando
+          with
+          [
+              _Alloc=std::allocator<RadioButton>,
+              _Ty=RadioButton,
+              _Objty=RadioButton
+          ]
+  
+  RadioButton.cpp
+  main .cpp
+  Generando código...
+  LINK : no se encontró C:\Users\igmml\Source\Repos\ProjectUber\x64\Debug\ProjectUber.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
   ProjectUber.vcxproj -> C:\Users\igmml\Source\Repos\ProjectUber\x64\Debug\ProjectUber.exe
