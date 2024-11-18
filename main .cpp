@@ -12,8 +12,6 @@ const int WIDTH_WINDOW = 654;
 const int HEIGHT_WINDOW = 810;
 
 void setPositions(Graph& g) {
-
-
 	g.addNode(0, 592, 471);
 	g.addNode(1, 568, 520);
 	g.addNode(2, 547, 572);
@@ -132,7 +130,6 @@ void addEdges(Graph& g) {
 	{16, 9, 15, 10},
 	{14, 10, 20, 12},
 	{91, 92, 18, 11},
-	{0, 32, 25, 15},
 	{32, 33, 22, 14},
 	{33, 35, 30, 20},
 	{35, 59, 27, 18},
@@ -232,6 +229,7 @@ void addDirectedEdges(Graph& g) {
 	// Una via
 	vector<vector<int>> directedEdges = {
 	{0, 12, 15, 10},
+	{32, 0, 25, 15},
 	{12, 26, 18, 12},
 	{26, 27, 20, 14},
 	{27, 28, 22, 15},

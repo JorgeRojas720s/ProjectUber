@@ -108,10 +108,10 @@ void Map::showWindow(Graph& graph, RenderWindow& window){
 				isAlreadyLeft(carPosition, lastNode)
 				) {
 					resetVariables(firstRenderOfTheCar, lastAlgorithm);
+					showTotalMessage();
 			}
 		}
 		window.display();
-		
 	}
 }
 
@@ -206,35 +206,60 @@ void Map::moveCar(vector<Node*>& nodePath, Sprite& movingCar)
 	}
 }
 
-bool Map::applyFloyd(Graph& graph){
+bool Map::applyFloyd(Graph& graph) {
 	vector<vector<int>> next(100, vector<int>(100, -1));
 	vector<vector<int>> distances = graph.floydWarshall(next);
 	int origin = 0, destination = 0;
+
 	cout << "Origen: ";
 	cin >> origin;
 	cout << "Destino: ";
 	cin >> destination;
 
 	vector<int> path = graph.getPath(origin, destination, next);
-	int totalMoney = 0;
-	int totalTime = 0;
 	this->nodePath.clear();
-	//agregar el total de money
-	for (int nodeId : path) {
-		Node* node = graph.getNodeById(nodeId);
+	this->totalMoney = 0;
+	this->totalTime = 0;
+
+	for (int i = 0; i < path.size(); ++i) {
+		Node* node = graph.getNodeById(path[i]);
 		if (node != nullptr) {
 			this->nodePath.push_back(node);
-			//total = total + node
 		}
 		else {
-			std::cout << "Nodo con id " << nodeId << " no encontrado." << std::endl;
+			std::cout << "Nodo con id " << path[i] << " no encontrado." << std::endl;
+			continue;
 		}
+		createTotalMoneyAndTime(path, graph, i);
+		
 	}
-	std::cout << "Total del viaje: " << totalMoney << endl;
-	std::cout << "Total de tiempo del viaje: " << totalTime << endl;
+
 	std::cout << std::endl;
+
 	return false;
 }
+
+void Map::showTotalMessage() {
+	std::cout << "Total del viaje: $" << this->totalMoney << std::endl;
+	std::cout << "Total de tiempo del viaje: " << this->totalTime << " min" << std::endl;
+}
+
+void Map::createTotalMoneyAndTime(vector<int>& path, Graph& graph, int& i) {
+	if (i + 1 < path.size()) {
+		int currentNode = path[i];
+		int nextNode = path[i + 1];
+
+		vector<Edge*> edges = graph.getAdjList()[currentNode];
+		for (Edge* edge : edges){
+			if (edge->getTargetNode() == nextNode) {
+				this->totalMoney += edge->getPrice();
+				this->totalTime += edge->getTime();
+				break;
+			}
+		}
+	}
+}
+
 
 void Map::rotateCar(Vector2f& start, Vector2f& end, Sprite& movingCar)
 {

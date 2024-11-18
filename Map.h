@@ -25,6 +25,8 @@ private:
 	int currentNodeIndex;
 	float interpolation;
 	float speed;
+	int totalMoney;
+	int totalTime;
 
 public:
 	Map();
@@ -51,12 +53,12 @@ public:
 	bool applyDjkstra(Graph& graph);
 	void moveCar(vector<Node*>& , Sprite&);
 	bool applyFloyd(Graph& graph);
+	void showTotalMessage();
+	void createTotalMoneyAndTime(vector<int>&, Graph&, int&);
 	void rotateCar(Vector2f&, Vector2f&, Sprite&);
 	void rotateRight(Vector2f&, Vector2f&, Sprite&);
 	void rotateLeft(Vector2f&, Vector2f&, Sprite&);
 	void rotateUp(Vector2f&, Vector2f&, Sprite&);
 	void rotateDown(Vector2f&, Vector2f&, Sprite&);
-
-
 
 };

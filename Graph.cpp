@@ -32,18 +32,49 @@ void Graph::addNode(int id, int posX, int posY)
 	this->nodes.push_back(newNode);
 }
 
-void Graph::addEdge(int startNode, int endNode, int price, int time)
-{
-    Edge* aux1 = new Edge(endNode, price, time);
-    Edge* aux2 = new Edge(startNode, price, time);
-	adjList[startNode].push_back(aux1);
-	adjList[endNode].push_back(aux2);
+void Graph::addEdge(int startNode, int endNode, int price, int time){
+    Node* start = getNodeById(startNode);
+    Node* end = getNodeById(endNode);
+
+    if (start == nullptr || end == nullptr) {
+        std::cout << "Error: Nodo no encontrado." << std::endl;
+        return;
+    }
+
+    double dx = end->getPosX() - start->getPosX();
+    double dy = end->getPosY() - start->getPosY();
+    double distance = std::sqrt(dx * dx + dy * dy);
+
+    price = distance * 0.018;
+    time = distance * 0.02;
+    price = price + price * 0.13;
+
+    Edge* edge = new Edge(endNode, price, time);
+    adjList[startNode].push_back(edge);
+
+    Edge* reverseEdge = new Edge(startNode, price, time);
+    adjList[endNode].push_back(reverseEdge);
 }
 
-void Graph::addDirectedEdge(int startNode, int endNode, int price, int time)
-{
-    Edge* aux1 = new Edge(endNode, price, time);
-	adjList[startNode].push_back(aux1);
+void Graph::addDirectedEdge(int startNode, int endNode, int price, int time){
+    Node* start = getNodeById(startNode);
+    Node* end = getNodeById(endNode);
+
+    if (start == nullptr || end == nullptr) {
+        std::cout << "Error: Nodo no encontrado." << std::endl;
+        return;
+    }
+
+    double dx = end->getPosX() - start->getPosX();
+    double dy = end->getPosY() - start->getPosY();
+    double distance = std::sqrt(dx * dx + dy * dy);
+
+    price = distance * 0.018;
+    time = distance * 0.02;
+    price = price + price * 0.13;
+
+    Edge* edge = new Edge(endNode, price, time);
+    adjList[startNode].push_back(edge);
 }
 
 void Graph::printGraph()
@@ -61,23 +92,19 @@ void Graph::printGraph()
 }
 
 vector<vector<int>> Graph::floydWarshall(vector<vector<int>>& next) {
-    // Obtener el número de nodos
     int n = nodes.size();
 
-    // Crear la matriz de distancias
     vector<vector<int>> dist(numberVertices, vector<int>(numberVertices, INT_MAX));
 
-    // Inicializar las distancias y la matriz `next`
     for (int i = 0; i < numberVertices; ++i) {
-        dist[i][i] = 0; // La distancia de un nodo a sí mismo es 0
-        next[i][i] = i; // El siguiente nodo en el camino a sí mismo es el propio nodo
+        dist[i][i] = 0;
+        next[i][i] = i;
         for (Edge* edge : adjList[i]) {
-            dist[i][edge->getTargetNode()] = edge->getPrice();
-            next[i][edge->getTargetNode()] = edge->getTargetNode(); // El siguiente nodo es el destino de la arista
+            dist[i][edge->getTargetNode()] = edge->getTime();
+            next[i][edge->getTargetNode()] = edge->getTargetNode();
         }
     }
 
-    // Algoritmo de Floyd-Warshall
     for (int k = 0; k < numberVertices; ++k) {
         for (int i = 0; i < numberVertices; ++i) {
             for (int j = 0; j < numberVertices; ++j) {
@@ -85,7 +112,7 @@ vector<vector<int>> Graph::floydWarshall(vector<vector<int>>& next) {
                     int newDist = dist[i][k] + dist[k][j];
                     if (newDist < dist[i][j]) {
                         dist[i][j] = newDist;
-                        next[i][j] = next[i][k]; // Actualiza el siguiente nodo
+                        next[i][j] = next[i][k];
                     }
                 }
             }
@@ -197,7 +224,7 @@ void Graph::drawRadioButtons(RenderWindow& window, vector<RadioButton>& radioBut
     }
 
     if (printRadioBtn) {
-        cout << selectedAlgorithm << endl;
+        cout << "Algoritmo seleccionado: "<< selectedAlgorithm << endl;
     }
 
     for (auto& button : radioButtons) {
